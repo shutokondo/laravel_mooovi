@@ -8,7 +8,8 @@ use App\Http\Requests;
 
 class UsersController extends Controller
 {
-    public function show(Request $request) {
-      return view('users.show')->with('user', $request->user());
+    public function show(Request $request)
+    {
+        return view('users.show')->with('user', $request->user());
     }
 }

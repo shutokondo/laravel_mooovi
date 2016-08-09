@@ -12,25 +12,28 @@ use Auth;
 
 class ReviewsController extends Controller
 {
-    public function create($id) {
-      if (Auth::guest()) {
-        return redirect('/login');
-      }
+    public function create($id)
+    {
+        if (Auth::guest())
+        {
+            return redirect('/login');
+        }
 
-      $product = Product::find($id);
-      $review = new Review();
+        $product = Product::find($id);
+        $review = new Review();
 
-      return view('reviews.create')->with(['product' => $product, 'review' => $review]);
+        return view('reviews.create')->with(['product' => $product, 'review' => $review]);
     }
 
-    public function store(Request $request) {
-      Review::create([
-        'user_id'     => $request->user()->id,
-        'rate'        => $request->rate,
-        'review'      => $request->review,
-        'product_id'  => $request->products,
-      ]);
+    public function store(Request $request)
+    {
+        Review::create([
+          'user_id'     => $request->user()->id,
+          'rate'        => $request->rate,
+          'review'      => $request->review,
+          'product_id'  => $request->products,
+        ]);
 
-      return redirect()->route('products.index');
+        return redirect()->route('products.index');
     }
 }
