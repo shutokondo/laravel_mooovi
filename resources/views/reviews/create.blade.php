@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.review_site')
 
 @section('content')
 <div id="main_cnt_wrapper">
@@ -37,9 +37,9 @@
               </ul>
             </div>
           </div>
-          {{ Form::model($review, array('route' => array('products.reviews.store', $product->id), 'method' => 'post')) }}
+          {{ Form::model($review, array('action' => array('ReviewsController@store', $product->id))) }}
           <div style="margin: 8px 0">
-            {{ Form::label('email', '評価', ['style' =>  'margin-right:8;']) }}
+            {{ Form::label('rate', '評価', ['style' =>  'margin-right:8;']) }}
             {{ Form::selectRange('rate', 1, 10, ['placeholder' => '評価', 'class' => 'searh__query', 'style' => 'text-align: right;']) }}
           </div>
           <div style="margin: 8px 0">
@@ -53,7 +53,5 @@
           {!! Form::close() !!}
         </article>
       </div>
-    </div>
-  </div>
-</div>
+      <div id="yjSub">
 @endsection
