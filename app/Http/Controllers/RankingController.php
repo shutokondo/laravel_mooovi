@@ -12,5 +12,13 @@ use DB;
 
 class RankingController extends Controller
 {
-    public $layout = "layouts.review_site";
+    public function __construct()
+    {
+        $productRanks = Review::ranking()->get()->map(function($review)
+        {
+            return Product::find($review->product_id);
+        });
+
+        $this->ranking = $productRanks;
+    }
 }
