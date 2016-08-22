@@ -5,8 +5,8 @@
   <header class="user_page-header">
     <div class="yjContainer">
       <a href="">
-        <div class="user_image"><img alt="Fix" src="{{ $user->avatar }}"></div>
-        <h2>{{ $user->name }}<span>さんのマイページ</span></h2>
+        <div class="user_image"><img alt="Fix" src="/images/{{ Auth::user()->avatar }}"></div>
+        <h2>{{ Auth::user()->name }}<span>さんのマイページ</span></h2>
       </a>
     </div>
   </header>
@@ -14,7 +14,7 @@
     <div id="yjContentsBody">
       <div class="yjContainer">
         <ul class="user_page-contents">
-        @foreach ($user->reviews as $review)
+        @foreach (Auth::user()->reviews as $review)
           <li style="background-image: url({{ $review->product->image_url }})">
             <div class="meta">
               <header>

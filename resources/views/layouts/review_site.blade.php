@@ -15,12 +15,12 @@
               <li class="logo" style="float: left">
                 <a href="/">mooovi</a>
               </li>
-              @if ($user)
+              @if (Auth::check())
               <li class="entry_button" style="float: right">
                 <a href="/logout" data-method="delete">サインアウト</a>
               </li>
               <li class="entry_button" style="float: right">
-                <a href="/users/{{ $user->id }}">マイページ</a>
+                <a href="/users/{{ Auth::user()->id }}">マイページ</a>
               </li>
               @else
               <li class="entry_button" style="float: right">
