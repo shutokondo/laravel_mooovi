@@ -6,7 +6,7 @@
     <div class="yjContainer">
       <div class="form_box">
         <h2>mooovi<span>新規登録</span></h2>
-         {!! Form::open() !!}
+         {!! Form::open(array('files' => true)) !!}
           @if (count($errors) > 0)
             <div id="error_explanation">
               <ul>
