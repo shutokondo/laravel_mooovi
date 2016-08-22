@@ -10,8 +10,14 @@ use App\Product;
 use App\Review;
 use Auth;
 
-class ReviewsController extends Controller
+class ReviewsController extends RankingController
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->middleware('auth', array('only', 'create'));
+    }
+
     public function create($id)
     {
         if (Auth::guest())
@@ -22,18 +28,18 @@ class ReviewsController extends Controller
         $product = Product::find($id);
         $review = new Review();
 
-        return view('reviews.create')->with(['product' => $product, 'review' => $review]);
+        return view('reviews.create')->with(array('product' => $product, 'review' => $review));
     }
 
     public function store(Request $request)
     {
         Review::create([
-          'user_id'     => $request->user()->id,
+          'user_id'     => Auth::user()->id,
           'rate'        => $request->rate,
           'review'      => $request->review,
           'product_id'  => $request->products,
         ]);
 
-        return redirect()->route('products.index');
+        return redirect('/products');
     }
 }
